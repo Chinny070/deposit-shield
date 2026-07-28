@@ -2,12 +2,17 @@
 
 import Link from "next/link";
 import { useWallet } from "@/lib/wallet";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Header() {
   const { mode, address, connected, connecting, connectInjected, useGenerated, disconnect } =
     useWallet();
   const [showMenu, setShowMenu] = useState(false);
+  const [hasInjected, setHasInjected] = useState(false);
+
+  useEffect(() => {
+    setHasInjected(!!window.ethereum);
+  }, []);
 
   const shortAddr = address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "";
 
@@ -31,7 +36,7 @@ export function Header() {
         <div className="relative">
           {!connected ? (
             <div className="flex items-center gap-2">
-              {typeof window !== "undefined" && window.ethereum && (
+              {hasInjected && (
                 <button
                   onClick={connectInjected}
                   disabled={connecting}
