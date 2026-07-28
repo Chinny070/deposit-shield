@@ -85,7 +85,12 @@ export function WalletProvider({ children }: { children: ReactNode }) {
 
       const walletAddress = accounts[0] as `0x${string}`;
       const client = createClient({ chain, account: walletAddress });
-      await client.connect(chainLabel);
+
+      try {
+        await client.connect(chainLabel);
+      } catch {
+        // Chain switch may fail — proceed anyway since user already approved
+      }
 
       setClientRef(client);
       setAddress(walletAddress);
