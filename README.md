@@ -81,12 +81,14 @@ Both paths share a single identity source. The displayed address and the write a
 
 ## Contract Address
 
-**StudioNet:** `[TO BE DEPLOYED]`
+**StudioNet:** `0x11C1359a8463de8c69c39E92F5e30A74A4437b29`
+
+**Live Demo:** https://deposit-shield-lemon.vercel.app
 
 ## Setup
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/Chinny070/deposit-shield.git
 cd deposit-shield
 npm install
 cp .env.example .env.local
